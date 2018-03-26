@@ -72,13 +72,14 @@ X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_s
 
 # model training
 log_model = LogisticRegression()  # using log-regression lib model
-log_model.fit(X_train, y_train)  # fitting
+log_model.fit(X_train, y_train)  # fitting 训练
 
 # model validation
-y_pred = log_model.predict(X_test)
+y_pred = log_model.predict(X_test) # 预测
 
 # summarize the fit of the model
-print(metrics.confusion_matrix(y_test, y_pred))
+print("confusion_matrix:")
+print(metrics.confusion_matrix(y_test, y_pred)) #混淆矩阵 它是一种特定的矩阵用来呈现算法性能的可视化效果 数据越集中于对角线 代表数据越准确
 print(metrics.classification_report(y_test, y_pred))
 
 precision, recall, thresholds = metrics.precision_recall_curve(y_test, y_pred)
