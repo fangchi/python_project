@@ -181,3 +181,43 @@ def predict(X, beta):
     return y
 
     return beta
+
+
+if __name__ == '__main__':
+    from sklearn import model_selection
+
+    # load the CSV file as a numpy matrix
+    dataset = np.loadtxt('data.csv', delimiter=",")
+
+    # separate the data from the target attributes
+    X = dataset[:, 1:3]  # 获取x变量
+    y = dataset[:, 3]  # 获取结果值
+
+    m, n = np.shape(X)
+
+    # X_train, X_test, y_train, y_test
+    np.ones(n)
+    m, n = np.shape(X)  # m 行  n列
+    X_ex = np.c_[X, np.ones(m)]  # extend the variable matrix to [x, 1]
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(X_ex, y, test_size=0.5, random_state=0)
+
+    # using gradDescent to get the optimal parameter beta = [w, b] in page-59
+    beta = gradDscent_2(X_train, y_train)
+
+    # prediction, beta mapping to the model
+    y_pred = predict(X_test, beta)
+
+    m_test = np.shape(X_test)[0]
+    # calculation of confusion_matrix and prediction accuracy
+    cfmat = np.zeros((2, 2))
+    for i in range(m_test):
+        if y_pred[i] == y_test[i] == 0:
+            cfmat[0, 0] += 1
+        elif y_pred[i] == y_test[i] == 1:
+            cfmat[1, 1] += 1
+        elif y_pred[i] == 0:
+            cfmat[1, 0] += 1
+        elif y_pred[i] == 1:
+            cfmat[0, 1] += 1
+    print("cfmat")
+    print(cfmat)
