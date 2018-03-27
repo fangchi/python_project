@@ -16,7 +16,7 @@ y = dataset[:, 3]   # 获取结果值
 m, n = np.shape(X)
 
 # draw scatter diagram to show the raw data
-f1 = plt.figure(1)
+#f1 = plt.figure(1)
 plt.title('watermelon_3a')
 plt.xlabel('density')
 plt.ylabel('ratio_sugar')
@@ -100,7 +100,7 @@ precision, recall, thresholds = metrics.precision_recall_curve(y_test, y_pred)
 
 # show decision boundary in plt
 # X - some data in 2dimensional np.array
-f2 = plt.figure(2)
+#f2 = plt.figure(2)
 h = 0.001 # 步长
 x0_min, x0_max = X[:, 0].min() - 0.1, X[:, 0].max() + 0.1
 x1_min, x1_max = X[:, 1].min() - 0.1, X[:, 1].max() + 0.1
@@ -139,7 +139,7 @@ import self_def;
 
 # X_train, X_test, y_train, y_test
 np.ones(n)
-m, n = np.shape(X)
+m, n = np.shape(X) # m 行  n列
 X_ex = np.c_[X, np.ones(m)]  # extend the variable matrix to [x, 1]
 X_train, X_test, y_train, y_test = model_selection.train_test_split(X_ex, y, test_size=0.5, random_state=0)
 
@@ -161,5 +161,5 @@ for i in range(m_test):
         cfmat[1, 0] += 1
     elif y_pred[i] == 1:
         cfmat[0, 1] += 1
-
+print("cfmat")
 print(cfmat)
