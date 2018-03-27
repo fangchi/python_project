@@ -82,14 +82,35 @@ print("confusion_matrix:")
 print(metrics.confusion_matrix(y_test, y_pred)) #混淆矩阵 它是一种特定的矩阵用来呈现算法性能的可视化效果 数据越集中于对角线 代表数据越准确
 print(metrics.classification_report(y_test, y_pred))
 
+#准确率 召回率曲线
+# 精确率(precision)的公式是P = {TP}/{TP+FP}
+# 召回率(recall) frac{TP}/{TP+FN},
+
+"""
+	相关(Relevant),正类	无关(NonRelevant),负类
+被检索到(Retrieved)	
+    true positives(TP 正类判定为正类,例子中就是正确的判定"这位是女生")	
+    false positives(FP 负类判定为正类,"存伪",例子中就是分明是男生却判断为女生,当下伪娘横行,这个错常有人犯)
+未被检索到(Not Retrieved)	
+    false negatives(FN 正类判定为负类,"去真",例子中就是,分明是女生,这哥们却判断为男生--梁山伯同学犯的错就是这个)	
+    true negatives(TN 负类判定为负类,也就是一个男生被判断为男生,像我这样的纯爷们一准儿就会在此处)
+"""
+
 precision, recall, thresholds = metrics.precision_recall_curve(y_test, y_pred)
 
 # show decision boundary in plt
 # X - some data in 2dimensional np.array
 f2 = plt.figure(2)
-h = 0.001
+h = 0.001 # 步长
 x0_min, x0_max = X[:, 0].min() - 0.1, X[:, 0].max() + 0.1
 x1_min, x1_max = X[:, 1].min() - 0.1, X[:, 1].max() + 0.1
+"""
+ meshgrid方法为从参数中返回一个坐标矩阵
+print(np.meshgrid([5,6,7],[3,45]))
+[array([[5, 6, 7],
+       [5, 6, 7]]), array([[ 3,  3,  3],
+       [45, 45, 45]])]
+"""
 x0, x1 = np.meshgrid(np.arange(x0_min, x0_max, h),
                      np.arange(x1_min, x1_max, h))
 
@@ -114,6 +135,7 @@ coding to implement logistic regression
 from sklearn import model_selection
 
 import self_def;
+
 
 # X_train, X_test, y_train, y_test
 np.ones(n)

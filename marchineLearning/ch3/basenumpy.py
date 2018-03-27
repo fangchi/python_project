@@ -52,10 +52,27 @@ print(arr[arr>2]) # [3 4 5 6]
 
 
 #修改形状
-print("修改形状")
-print(arr.reshape(2,3)) #[[1 2 3]  [4 5 6]]
-print("转置") # 转置
-print(arr.T) # 转置 @[[1 3 5] [2 4 6]]
-print("摊平") # 摊平
-print(arr.flatten()) # 摊平 array([1, 2, 3, 4, 5, 6])
+# print("修改形状")
+# print(arr.reshape(2,3)) #[[1 2 3]  [4 5 6]]
+# print("转置") # 转置
+# print(arr.T) # 转置 @[[1 3 5] [2 4 6]]
+# print("摊平") # 摊平
+# print(arr.flatten()) # 摊平 array([1, 2, 3, 4, 5, 6]np.arange(-2, -8, -2))
 
+
+print(np.arange(1,4, 1))
+print(np.arange(-2, -8, -4))
+print(np.meshgrid([5,6,7],[3,45]))
+"""
+print(np.meshgrid([5,6,7],[3,45]))
+[array([[5, 6, 7],
+       [5, 6, 7]]), array([[ 3,  3,  3],
+       [45, 45, 45]])]
+"""
+# x3,x4 = np.meshgrid([5,6,7],[3,45])
+# print(x3.ravel())
+# print(x4.ravel())
+
+
+c = np.array([[1,1],[1,2],[1,3],[1,4]])
+print(c.shape )
