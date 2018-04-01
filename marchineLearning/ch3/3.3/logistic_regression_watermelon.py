@@ -7,7 +7,7 @@ import numpy as np  # for matrix calculation
 import matplotlib.pyplot as plt
 
 # load the CSV file as a numpy matrix
-dataset = np.loadtxt('data.csv', delimiter=",")
+dataset = np.loadtxt('3.3/data.csv', delimiter=",")
 
 # separate the data from the target attributes
 X = dataset[:, 1:3] #获取x变量

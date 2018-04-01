@@ -13,7 +13,7 @@ import pandas as pd
 # y = np.array([1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 print("begin")
 
-dataset = np.loadtxt('data.csv', delimiter=",")
+dataset = np.loadtxt('3.3/data.csv', delimiter=",")
 X = dataset[:, 1:3]
 hang, lie = np.shape(X);
 X_ex = np.c_[X, np.ones(hang)]
