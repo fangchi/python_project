@@ -46,10 +46,10 @@ while 1:
     d2beta = 0
     for i in range(hang):
         dbeta = dbeta - np.dot(np.array([x[:, i]]).T,
-                               (y[i] - (np.exp(beta_T_x[i]) / (1 + np.exp(beta_T_x[i])))))  # 一阶导数
+                               (y[i] - (np.exp(beta_T_x[i]) / (1 + np.exp(beta_T_x[i])))))  # 一阶导数 3.30
         d2beta = d2beta + np.dot(np.array([x[:, i]]).T, np.array([x[:, i]]).T.T) * (
                 np.exp(beta_T_x[i]) / (1 + np.exp(beta_T_x[i]))) * (
-                         1 - (np.exp(beta_T_x[i]) / (1 + np.exp(beta_T_x[i])))) # 二阶导数
+                         1 - (np.exp(beta_T_x[i]) / (1 + np.exp(beta_T_x[i])))) # 二阶导数 3.31
     beta = beta - np.dot(linalg.inv(d2beta), dbeta)  #3.29函数
     print("当前迭代", n)
     print("当前beta", beta)
