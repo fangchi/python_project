@@ -31,7 +31,8 @@ while 1:
     # ，再与x相乘（dot）,beta_T_x表示β转置乘以x)
     cur_l = 0  # 当前的l值
     for i in range(hang):
-        cur_l = cur_l + (-y[i] * beta_T_x[i] + np.log(1 + np.exp(beta_T_x[i])))  # 计算当前3.27式的l值，这是目标函数，希望他越小越好  beta_T_x[i] = WT(x)
+        cur_l = cur_l + (-y[i] * beta_T_x[i] + np.log(
+            1 + np.exp(beta_T_x[i])))  # 计算当前3.27式的l值，这是目标函数，希望他越小越好  beta_T_x[i] = WT(x)
     # 迭代终止条件
     if np.abs(cur_l - old_l) <= 0.000001:  # 精度，二者差在0.000001以内就认为可以了，说明l已经很收敛了
         print("确实收敛")
@@ -49,10 +50,9 @@ while 1:
                                (y[i] - (np.exp(beta_T_x[i]) / (1 + np.exp(beta_T_x[i])))))  # 一阶导数 3.30
         d2beta = d2beta + np.dot(np.array([x[:, i]]).T, np.array([x[:, i]]).T.T) * (
                 np.exp(beta_T_x[i]) / (1 + np.exp(beta_T_x[i]))) * (
-                         1 - (np.exp(beta_T_x[i]) / (1 + np.exp(beta_T_x[i])))) # 二阶导数 3.31
-    beta = beta - np.dot(linalg.inv(d2beta), dbeta)  #3.29函数
+                         1 - (np.exp(beta_T_x[i]) / (1 + np.exp(beta_T_x[i]))))  # 二阶导数 3.31
+    beta = beta - np.dot(linalg.inv(d2beta), dbeta)  # 3.29函数
     print("当前迭代", n)
     print("当前beta", beta)
 print('模型参数是：', beta)
 print('迭代次数：', n)
-
