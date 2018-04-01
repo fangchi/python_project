@@ -110,19 +110,19 @@ def gradDscent_2(X, y):  # implementation of stochastic gradDscent algorithms
     '''
     import matplotlib.pyplot as plt
 
-    m, n = np.shape(X)
-    h = 0.5  # step length of iterator and initial
+    m, n = np.shape(X)  # m =  ? m= 行数  n = 列
+    h = 0.5  # step length of iterator and initial 步长
     beta = np.zeros(n)  # parameter and initial
     delta_beta = np.ones(n) * h
     llh = 0
     llh_temp = 0
-    b = np.zeros((n, m))  # for show convergence curve of parameter
+    b = np.zeros((n, m))  # for show convergence curve of parameter n行m列  记录结果
 
-    for i in range(m):
-        beta_temp = beta
+    for i in range(m):  #遍历所有训练集数据
+        beta_temp = beta   #初始化
 
-        for j in range(n):
-            # for partial derivative
+        for j in range(n):  #针对每一个训练集的每个参数
+            # for partial derivative 偏导
             h = 0.5 * 1 / (1 + i + j)  # change step length of iterator
             beta[j] += delta_beta[j]
 
@@ -136,24 +136,26 @@ def gradDscent_2(X, y):  # implementation of stochastic gradDscent algorithms
         beta += delta_beta
         llh = likelihood_sub(X[i], y[i], beta)
 
-    t = np.arange(m)
+    # t = np.arange(m)
 
-    f2 = plt.figure(3)
+    # f2 = plt.figure(3)
+    #
+    # p1 = plt.subplot(311)
+    # p1.plot(t, b[0])
+    # plt.ylabel('w1')
+    #
+    # p2 = plt.subplot(312)
+    # p2.plot(t, b[1])
+    # plt.ylabel('w2')
+    #
+    # p3 = plt.subplot(313)
+    # p3.plot(t, b[2])
+    # plt.ylabel('b')
 
-    p1 = plt.subplot(311)
-    p1.plot(t, b[0])
-    plt.ylabel('w1')
+    # plt.show()
 
-    p2 = plt.subplot(312)
-    p2.plot(t, b[1])
-    plt.ylabel('w2')
-
-    p3 = plt.subplot(313)
-    p3.plot(t, b[2])
-    plt.ylabel('b')
-
-    plt.show()
-
+    print('beta:')
+    print(beta);
     return beta
 
 
@@ -197,9 +199,9 @@ if __name__ == '__main__':
 
     # X_train, X_test, y_train, y_test
     np.ones(n)
-    m, n = np.shape(X)  # m 行  n列
-    X_ex = np.c_[X, np.ones(m)]  # extend the variable matrix to [x, 1]
-    X_train, X_test, y_train, y_test = model_selection.train_test_split(X_ex, y, test_size=0.5, random_state=0)
+    m, n = np.shape(X)  # m 行  n列 m=17 n=2
+    X_ex = np.c_[X, np.ones(m)]  # extend the variable matrix to [x, 1] test_size = 0.4 表示训练集>测试集
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(X_ex, y, test_size=0.4, random_state=0)
 
     # using gradDescent to get the optimal parameter beta = [w, b] in page-59
     beta = gradDscent_2(X_train, y_train)

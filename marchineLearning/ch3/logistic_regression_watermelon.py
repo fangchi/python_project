@@ -148,7 +148,7 @@ beta = self_def.gradDscent_2(X_train, y_train)
 
 # prediction, beta mapping to the model
 y_pred = self_def.predict(X_test, beta)
-
+print(beta)
 m_test = np.shape(X_test)[0]
 # calculation of confusion_matrix and prediction accuracy
 cfmat = np.zeros((2, 2))
