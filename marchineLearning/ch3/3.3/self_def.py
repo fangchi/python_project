@@ -189,7 +189,7 @@ if __name__ == '__main__':
     from sklearn import model_selection
 
     # load the CSV file as a numpy matrix
-    dataset = np.loadtxt('3.3/data.csv', delimiter=",")
+    dataset = np.loadtxt('/Users/fangchi/PycharmProjects/python_project/marchineLearning/ch3/3.3/data.csv', delimiter=",")
 
     # separate the data from the target attributes
     X = dataset[:, 1:3]  # 获取x变量

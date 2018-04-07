@@ -1,5 +1,5 @@
 import numpy as np
-dataset = np.loadtxt('data.csv', delimiter=",")
+dataset = np.loadtxt('/Users/fangchi/PycharmProjects/python_project/marchineLearning/ch3/3.3/data.csv', delimiter=",")
 
 X = dataset[:, 1:3]
 y = dataset[:, 3]
@@ -76,3 +76,6 @@ print(np.meshgrid([5,6,7],[3,45]))
 
 c = np.array([[1,1],[1,2],[1,3],[1,4]])
 print(c.shape )
+
+
+print(np.random.uniform(1, 10, (5, 5)))
