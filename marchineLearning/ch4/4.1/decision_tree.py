@@ -192,7 +192,7 @@ def InfoGain(df, index):
     if df[index].dtype == (float, int):
         sub_info_ent = {}  # store the div_value (div) and it's subset entropy
 
-        df = df.sort([index], ascending=1)  # sorting via column
+        df = df.sort_values([index], ascending=1)  # sorting via column
         df = df.reset_index(drop=True)
 
         data_arr = df[index]
