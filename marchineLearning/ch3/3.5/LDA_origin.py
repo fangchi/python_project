@@ -69,19 +69,19 @@ plt.scatter(X[y == 1,0], X[y == 1,1], marker = 'o', color = 'g', s=100, label = 
 # plt.show()
 '''
 
-from sklearn import model_selection
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
-from sklearn import metrics
-import matplotlib.pyplot as plt
-# generalization of train and test set
-X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.5, random_state=0)
-# model fitting
-lda_model = LinearDiscriminantAnalysis(solver='lsqr', shrinkage=None).fit(X_train, y_train)
-# model validation
-y_pred = lda_model.predict(X_test)
-# summarize the fit of the model
-print(metrics.confusion_matrix(y_test, y_pred))
-print(metrics.classification_report(y_test, y_pred))
+# from sklearn import model_selection
+# from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+# from sklearn import metrics
+# import matplotlib.pyplot as plt
+# # generalization of train and test set
+# X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.5, random_state=0)
+# # model fitting
+# lda_model = LinearDiscriminantAnalysis(solver='lsqr', shrinkage=None).fit(X_train, y_train)
+# # model validation
+# y_pred = lda_model.predict(X_test)
+# # summarize the fit of the model
+# print(metrics.confusion_matrix(y_test, y_pred))
+# print(metrics.classification_report(y_test, y_pred))
 
 
 '''
@@ -204,7 +204,7 @@ Sw_inv = V.T * np.linalg.inv(np.diag(sigma)) * U.T
 # 3-th. computing the parameter w, refer on book (3.39)
 w = np.dot(Sw_inv, (u[0] - u[1]).reshape(n, 1))  # here we use a**-1 to get the inverse of a ndarray
 
-print(w)
+print("w",w)
 
 # 4-th draw the LDA line in scatter figure
 
