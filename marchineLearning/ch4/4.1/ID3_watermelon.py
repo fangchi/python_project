@@ -22,24 +22,26 @@ print('at here')
 # import matplotlib.pyplot as plt
 # import seaborn as sns
 # # sns.set(style="whitegrid", color_codes=True)
-# mpl.rcParams['font.sans-serif'] = ['Droid Sans Fallback']  # for chinese chararter visualization
+#
+# myfont = mpl.font_manager.FontProperties(fname="/Library/Fonts/华文仿宋.ttf")#"/Library/Fonts/Songti.ttc")
+# sns.set(style="white", color_codes=True,font=myfont.get_name())
 # mpl.rcParams['axes.unicode_minus'] = False
 # sns.set_context("poster")
 #
 # f1 = plt.figure(1)
 # sns.FacetGrid(df, hue="好瓜", size=5).map(plt.scatter, "密度", "含糖率").add_legend()
-# sns.plt.show()
+# plt.show()
 #
 # f2 = plt.figure(2)
-# sns.plt.subplot(221)
+# plt.subplot(221)
 # sns.swarmplot(x = "纹理", y = '密度', hue = "好瓜", data = df)
-# sns.plt.subplot(222)
+# plt.subplot(222)
 # sns.swarmplot(x = "敲声", y = '密度', hue = "好瓜", data = df)
-# sns.plt.subplot(223)
+# plt.subplot(223)
 # sns.swarmplot(x = "色泽", y = '含糖率', hue = "好瓜", data = df)
-# sns.plt.subplot(224)
+# plt.subplot(224)
 # sns.swarmplot(x = "敲声", y = '含糖率', hue = "好瓜", data = df)
-# sns.plt.show()
+# plt.show()
 
 '''
 implementation of ID3
