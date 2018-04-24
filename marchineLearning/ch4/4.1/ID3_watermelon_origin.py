@@ -1,21 +1,48 @@
 # -*- coding: utf-8 -*
 
+'''''
+create on 2017/3/24, the day after our national football team beat south korea
+@author: PY131
+'''''
+
+'''
+definition of decision node class
+attr: attribution as parent for a new branching 
+attr_down: dict: {key, value}
+        key:   categoric:  categoric attr_value 
+               continuous: '<= div_value' for small part
+                           '> div_value' for big part
+        value: children (Node class)
+label： class label (the majority of current sample labels)
+'''
+
+
 class Node(object):
     def __init__(self, attr_init=None, label_init=None, attr_down_init={}):
         self.attr = attr_init
         self.label = label_init
         self.attr_down = attr_down_init
 
-#生成决策树
+
+''' 
+Branching for decision tree using recursion 
+
+@param df: the pandas dataframe of the data_set
+@return root: Node, the root node of decision tree
+'''
+
+
 def TreeGenerate(df):
-    # 构建大树的根节点
+    # generating a new root node
     new_node = Node(None, None, {})
-    label_arr = df[df.columns[-1]] # 获取分类列表
-    label_count = NodeLabel(label_arr) # 将属性分类结果作为字典{分类 - 数量}
+    label_arr = df[df.columns[-1]]
+
+    label_count = NodeLabel(label_arr)
     if label_count:  # assert the label_count isn's empty
-        new_node.label = max(label_count, key=label_count.get)  #找到字典中结果分类数量最多的分类
-        #  如果剩下的样本都是相同分类
-        #  如果剩下的样本所有属性相同
+        new_node.label = max(label_count, key=label_count.get)
+
+        # end if there is only 1 class in current node data
+        # end if attribution array is empty
         if len(label_count) == 1 or len(label_arr) == 0:
             return new_node
 
@@ -48,6 +75,8 @@ make a predict based on root
 @param root: Node, root Node of the decision tree
 @param df_sample: dataframe, a sample line 
 '''
+
+
 def Predict(root, df_sample):
     try:
         import re  # using Regular Expression to get the number in string
@@ -88,14 +117,16 @@ calculating the appeared label and it's counts
 @return label_count: dict, the appeared label and it's counts
 '''
 
-#将List转化为中的值  按照{值类型-数量组成}字典
+
 def NodeLabel(label_arr):
     label_count = {}  # store count of label
+
     for label in label_arr:
         if label in label_count:
             label_count[label] += 1
         else:
             label_count[label] = 1
+
     return label_count
 
 
@@ -108,11 +139,13 @@ calculating the appeared value for categoric attribute and it's counts
 
 def ValueCount(data_arr):
     value_count = {}  # store count of value
+
     for label in data_arr:
         if label in value_count:
             value_count[label] += 1
         else:
             value_count[label] = 1
+
     return value_count
 
 
@@ -128,8 +161,9 @@ find the optimal attributes of current data_set
 
 def OptAttr(df):
     info_gain = 0
-    for attr_id in df.columns[1:-1]: #遍历所有属性
-        info_gian_tmp, div_value_tmp = InfoGain(df, attr_id) #获取对应属性的信息熵
+
+    for attr_id in df.columns[1:-1]:
+        info_gian_tmp, div_value_tmp = InfoGain(df, attr_id)
         if info_gian_tmp > info_gain:
             info_gain = info_gian_tmp
             opt_attr = attr_id
@@ -148,9 +182,9 @@ calculating the information gain of an attribution
                for continuous variable, value = t (the division value)
 '''
 
-# 求信息熵
+
 def InfoGain(df, index):
-    info_gain = InfoEnt(df.values[:, -1])  # info_gain for the whole label  df.values[:, -1] 所有分类
+    info_gain = InfoEnt(df.values[:, -1])  # info_gain for the whole label
     div_value = 0  # div_value for continuous attribute
 
     n = len(df[index])  # the number of sample
@@ -195,7 +229,7 @@ calculating the information entropy of an attribution
 @return ent: the information entropy of current attribution
 '''
 
-#获取Array信息熵
+
 def InfoEnt(label_arr):
     try:
         from math import log2
