@@ -9,7 +9,6 @@ with open(os.path.abspath('.')+"/data.csv", mode='r',encoding='utf-8') as data_f
 
 root = decision_tree.TreeGenerate(df)
 accuracy_scores = []
-
 n = len(df.index)
 k = 5
 for i in range(k):
@@ -39,3 +38,8 @@ for i in range(k):
     print("%.3f  " % accuracy_scores[i], end="")
     accuracy_sum += accuracy_scores[i]
 print("\naverage accuracy: %.3f" % (accuracy_sum / k))
+
+# dicision tree visualization using pydotplus.graphviz
+import os
+os.environ["PATH"] += os.pathsep + 'D:/software/graphviz-2.38/release/bin'
+decision_tree.DrawPNG(root, "decision_tree_ID3.png")
